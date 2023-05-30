@@ -13,3 +13,13 @@ nav > a {
 nav > a:hover {
   text-decoration: underline;
 }
+
+input {
+  padding: 6x;
+  font-size: 15px;
+}
+
+button {
+  padding: 6px;
+  margin-top: 10px;
+}
