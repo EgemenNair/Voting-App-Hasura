@@ -1,6 +1,8 @@
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
-import { NEW_QUESTION_MUTATION } from "./queries";
+import { NEW_QUESTION_MUTATION, IQuestions, IAddQuestion } from "./queries";
+import Loading from "../../components/Loading";
+import Error from "../../components/Error";
 
 interface IOption {
   title: string;
@@ -9,7 +11,12 @@ interface IOption {
 const initialOptions: IOption[] = [{ title: "" }];
 
 function New() {
-  const [addQuestion, { loading }] = useMutation(NEW_QUESTION_MUTATION);
+  const [addQuestion, { loading, error }] = useMutation<
+    {
+      addQuestion: IQuestions;
+    },
+    { input: IAddQuestion }
+  >(NEW_QUESTION_MUTATION);
   const [title, setTitle] = useState("");
   const [options, setOptions] = useState(initialOptions);
   const handleChangeOption: ({
@@ -37,6 +44,13 @@ function New() {
       },
     });
   };
+
+  if (loading) {
+    return <Loading />;
+  }
+  if (error) {
+    return <Error />;
+  }
 
   return (
     <div>

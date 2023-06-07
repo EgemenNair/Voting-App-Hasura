@@ -8,3 +8,12 @@ export const QUESTIONS_SUBSCRIPTION = gql`
     }
   }
 `;
+
+interface IQuestion {
+  id: number;
+  title: string;
+}
+
+export interface IQuestions {
+  questions: IQuestion[];
+}

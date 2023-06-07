@@ -8,3 +8,25 @@ export const NEW_QUESTION_MUTATION = gql`
     }
   }
 `;
+
+interface IOption {
+  id: number;
+  title: string;
+  question_id: number;
+  votes: {
+    id: number;
+    title: string;
+    question_id: number;
+  };
+}
+
+export interface IQuestions {
+  id: number;
+  title: string;
+  options: IOption[];
+}
+
+export interface IAddQuestion {
+  title: string;
+  options: IOption[];
+}
